@@ -3,7 +3,7 @@
   "version": "7.0.0",
   "license": "Apache",
   "engines": {
-    "node": "9.11.12"
+    "node": "9.11.2"
   },
   "scripts": {
     "ng": "ng",
