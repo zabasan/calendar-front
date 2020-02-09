@@ -13,7 +13,7 @@
     "test": "ng test",
     "test-ci": "TEST_CI=true ng test",
     "lint": "ng lint",
-    "postinstall": "ng build --aot --prod",
+    "gitbuild": "ng build --aot --prod --base-href /start-angular/SB-Admin-BS4-Angular-7/master/dist/",
     "heroku-postbuild": "ng build --prod",
     "e2e": "ng e2e"
   },
