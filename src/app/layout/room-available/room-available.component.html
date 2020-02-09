@@ -1,0 +1,80 @@
+<div class="card mb-3">
+    <div class="card-header">
+        <span class="title-card-header">Search for Available Rooms</span>
+    </div>
+    <div class="row card-body">
+        <div class="form-group col-md-6">
+            <label>Dates:</label>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-info" disabled>
+                        <i class="fa fa-calendar fa-fw"></i>
+                    </button>
+                </span>
+                <input class="form-control" type="text" matInput
+                       ngxDaterangepickerMd
+                       [locale]="{format: 'YYYY-MM-DD'}"
+                       startKey="start"
+                       endKey="end"
+                       [(ngModel)]="selected"
+                       name="daterange"/>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="">Guests:</label>
+            <input class="form-control text-right" type="text" [(ngModel)]="guests"/>
+        </div>
+    </div>
+    <div class="row card-body">
+        <div class="col-md-12 text-right">
+            <button type="button" class="btn btn-info" (click)="areRoomsAvailable()">
+                <i class="fa fa-search"></i> Search
+            </button>
+        </div>
+    </div>
+    <div class="card-body table-responsive">
+        <div *ngIf="!roomsAvailable.length" class="text-center" style="min-height: 500px">
+            <i class="fa fa-search"> </i> Search for rooms for the chosen dates
+        </div>
+        <table class="table table-bordered table-striped text-center" *ngIf="roomsAvailable.length">
+            <thead>
+            <tr>
+                <th>Selected</th>
+                <th *ngFor="let column of columns">{{ column['title']}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let room of roomsAvailable; let i = index">
+                <td>
+                    <input type="checkbox"[(ngModel)]="checkbox[i]" (click)="toggleSelected(room['id'])" [disabled]="!room['default_guests']">
+                </td>
+                <td>
+                    {{ room['room'] }}
+                </td>
+                <td>
+                    ${{ room['cost'] }}
+                </td>
+                <td>
+                    {{ room['total_guests_allow'] }}
+                </td>
+                <td>
+                    {{ room['days'] }}
+                </td>
+                <td style="min-width: 130px;" class="text-center">
+                    <ng-select class="form-control" style="max-width: 110px; display: inline-block" [items]="room['inputMax']" [(ngModel)]="room['default_guests']" (ngModelChange)="removeRoomFromToogle(room['id'], room['default_guests'], i)">
+                    </ng-select>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info" placement="top" (click)="reserveRoom(room)" ngbTooltip="Reserve Room {{room['room']}}" [disabled]="selectedRooms.length || !room['default_guests']" [routerLink]="['/reserve-rooms/']">
+                        <i class="fa fa-edit"></i>&nbsp; Reserve
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!--ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="5" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination-->
+    </div>
+    <button *ngIf="roomsAvailable.length" type="button" class="btn btn-info" placement="top" (click)="reserveRooms()" ngbTooltip="Reserve Rooms" [routerLink]="['/reserve-rooms/']" [disabled]="!selectedRooms.length">
+        <i class="fa fa-edit"></i>&nbsp; Reserve Selected Rooms
+    </button>
+</div>

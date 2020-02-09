@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/bootstrap";
+@import "spinner";
+@import "utils";
+@import "rtl";
+@import "responsive";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@media print {
+    .breadcrumb {
+        display: none !important;
+    }
+}
+.title-card-header {
+    font-size: 35px;
+}
+
+.btn-create-new {
+    background-color: #232326;
+    color: #fff;
+    float: right;
+    margin-right: 15px;
+    margin-top: 6px;
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+iframe { display:block; width:100%; border:none; }

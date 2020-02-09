@@ -1,0 +1,190 @@
+<div class="row" *ngIf="!guest && !isNewGuest  && roomsToBook">
+  <div class="col-md-6">
+    <label for="">Search Guest by Phone Number:</label>
+    <span style="display: flex">
+      <input style="max-width: 85%" type="text" class="form-control" id="" name="guest_phone_number" required [(ngModel)] = "guest_phone_number"/>
+      <button type="button" class="btn btn-info" (click)="findGuest()" style="margin-left: 5px">
+        <i class="fa fa-search"></i> Search
+      </button>
+    </span>
+  </div>
+  <div class="col-md-6 text-right">
+    <button type="button" class="btn btn-info" (click)="changeNewClient()" style="margin-left: 5px" *ngIf="!isNewGuest && !guest">
+      <i class="fa fa-plus"></i> New Guest
+    </button>
+  </div>
+</div>
+<br>
+<div class="row" *ngIf="roomsToBook">
+  <div class="col-md-12 card-header" style="margin-bottom: 10px">
+    <span class="title-card-header">Reservation Data</span>
+  </div>
+  <br>
+  <div class="col-md-12">
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Total Days</th>
+        <th>Total Cost</th>
+        <th>Total Rooms booked</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{start}}hs</td>
+        <td>{{end}}hs</td>
+        <td>{{reservationData['total_days']}}</td>
+        <td>${{reservationData['total_cost']}}</td>
+        <td>{{reservationData['rooms'].length}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6" *ngFor="let room of reservationData['rooms']; let i = index">
+    <span class="card-title">Room Booked {{i + 1}}</span>
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+      <tr>
+        <th>Room</th>
+        <th>Guests</th>
+        <th>Room Cost per day</th>
+        <th>Extra Beds Cost</th>
+        <th>Total Room Cost</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{ i + 1 }}</td>
+        <td>{{room['default_guests']}}</td>
+        <td>${{room['cost']}}</td>
+        <td>${{(room['default_guests'] - room['room_guests']) > 0 ? room['days'] * room['extra_bed_cost'] * (room['default_guests'] - room['room_guests']): 0}}</td>
+        <td>${{room['cost'] * room['days'] + ((room['default_guests'] - room['room_guests']) > 0 ? room['days'] * room['extra_bed_cost'] * (room['default_guests'] - room['room_guests']): 0)}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+    <div class="col-md-3">
+        <label for="total_guests">Discount Percentage</label>
+        <div class="input-group mb-6">
+            <input type="text" class="form-control" id="total_guests" name="total_guests" required [(ngModel)] = "discount_percentage" (ngModelChange)="discountChange($event)"/>
+            <div class="input-group-append">
+                <span class="input-group-text">%</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label for="total_with_discount">Total Cost With Discount</label>
+        <div class="input-group mb-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+            </div>
+            <input type="text" class="form-control" id="total_with_discount" name="total_with_discount" required [(ngModel)] = "total_with_discount" disabled/>
+
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="(guest || isNewGuest) && roomsToBook">
+  <div class="col-md-12">
+    <form #aa="ngForm" role="form" (submit)="reserveRooms()">
+      <div class="row">
+        <div class="col-md-12">
+          <button (click)="backClicked()" type="button" class="btn btn-create-new"> <i class="fa fa-angle-left"></i> Go Back</button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="card-header col-md-12">
+          <span class="title-card-header">Guest Data</span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="guest_first_name">First Name</label>
+            <input type="text" class="form-control" id="guest_first_name" name="guest_first_name" required [(ngModel)] = "guest.guest_first_name"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="guest_last_name">Last Name</label>
+            <input type="text" class="form-control" id="guest_last_name" name="guest_last_name" required [(ngModel)] = "guest.guest_last_name"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="guest_phone_number">Phone Number</label>
+            <input type="text" class="form-control" id="guest_phone_number" name="guest_phone_number" required [(ngModel)] = "guest.guest_phone_number"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required [(ngModel)] = "guest.email"/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" name="address" required [(ngModel)] = "guest.address"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" name="country" id="country" [(ngModel)] = "guest.country"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="province">Province</label>
+            <input type="text" class="form-control" name="province" id="province" [(ngModel)] = "guest.province"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" name="city" required [(ngModel)] = "guest.city"/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="postal_code">Postal Code</label>
+            <input type="text" class="form-control" id="postal_code" name="postal_code" required [(ngModel)] = "guest.postal_code"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="credit_card_number">Credit Card</label>
+            <input type="text" class="form-control" id="credit_card_number" name="credit_card_number" [(ngModel)] = "guest.credit_card_number"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="credit_card_expire_date">Expire Date</label>
+            <input type="text" class="form-control" name="credit_card_expire_date" id="credit_card_expire_date" [(ngModel)] = "guest.credit_card_expire_date"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="credit_card_security_code">Code</label>
+            <input type="text" class="form-control" name="credit_card_security_code" id="credit_card_security_code" [(ngModel)] = "guest.credit_card_security_code"/>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-create-new" [disabled]="!aa.valid"><i class="fa fa-save"></i> Reserve</button>
+          <button (click)="backClicked()" type="button" class="btn btn-create-new"> <i class="fa fa-angle-left"></i> Go Back</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="row" *ngIf="response">
+    <div class="col-md-12">
+        <h3 class="text-center">Reservation was complete</h3>
+        <span *ngIf="response.rooms_booked.reservation_code">
+            <p style="padding-left: 20px">Reservation code: {{response.rooms_booked.reservation_code}}</p>
+            <p style="padding-left: 20px">Day to arrive: {{response.rooms_booked.start_date}}</p>
+            <p style="padding-left: 20px">Day to leave: {{response.rooms_booked.end_date}}</p>
+            <p style="padding-left: 20px">Total days: {{response.rooms_booked.days}}</p>
+            <p style="padding-left: 20px">Total rooms booked: {{response.rooms_booked.quantity}}</p>
+            <p style="padding-left: 20px">Total guests: {{response.rooms_booked.total_guests}}</p>
+            <p style="padding-left: 20px">Total cost: ${{response.rooms_booked.total_cost}}</p>
+            <p *ngIf="response.rooms_booked.discount_percentage >  0" style="padding-left: 20px">Discount percentage: {{response.rooms_booked.discount_percentage}} %</p>
+            <p *ngIf="response.rooms_booked.discount_percentage > 0" style="padding-left: 20px">Total with discount: ${{response.rooms_booked.total_with_discount }}</p>
+        </span>
+        <p style="padding-left: 20px" *ngIf="response.unavailable_rooms.length">{{response.unavailable_rooms.length}} of the rooms you try to booked{{response.unavailable_rooms.length > 1 ? 'were' : 'was'}} unavailable</p>
+    </div>
+</div>

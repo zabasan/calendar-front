@@ -1,0 +1,62 @@
+<div *ngIf="showFilter == true" class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <p>Filters</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <form role="form">
+            <div class="row">
+                <!--div class="col-md-6" >
+                    <div class="form-group">
+                        <label for="clients_id">Clients</label>
+                        <ngx-select class="ngx-select_multiple" [items]="clientList" [multiple]="true" [(ngModel)]="filters['clients[]']" [ngModelOptions]="{standalone: true}" optionValueField="id" optionTextField="name" id="clients_id"></ngx-select>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="filtersToShow.providers">
+                    <div class="form-group">
+                        <label for="clients_id">Providers</label>
+                        <ngx-select class="ngx-select_multiple" [items]="providerList" [multiple]="true" [(ngModel)]="filters['providers[]']" [ngModelOptions]="{standalone: true}" optionValueField="id" optionTextField="name" id="providers_id"></ngx-select>
+                    </div>
+                </div-->
+                <div class="col-md-6" *ngIf="filtersToShow.status">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" name="status" id="status" [(ngModel)] = "filters.status">
+                            <option value="null"></option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="filtersToShow.reservation_code">
+                    <div class="form-group">
+                        <label for="status">Reservation Code</label>
+                        <input class="form-control" name="reservation_code" id="reservation_code" [(ngModel)] = "filters.reservation_code"  />
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="filtersToShow.reservation_code">
+                    <div class="form-group">
+                        <label for="status">Start Date</label>
+                        <div class="input-group datepicker-input">
+                            <input class="form-control"
+                                   name="dp" [(ngModel)]="aux.start_date" ngbDatepicker #d="ngbDatepicker">
+                            <button class="input-group-addon" (click)="d.toggle()" type="button">
+                                <!-- <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/> -->
+                                <span class="fa fa-calendar"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-create-new" (click)="applyFilter()"><i class="fa fa-filter"></i> Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>

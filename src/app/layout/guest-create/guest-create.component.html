@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-md-12">
+        <form #aa="ngForm" role="form" (submit)="createGuest()">
+            <div class="row">
+                <div class="col-md-12">
+                    <button (click)="backClicked()" type="button" class="btn btn-create-new"> <i class="fa fa-angle-left"></i> Go Back</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="card-header col-md-12">
+                    <span class="title-card-header">Guest Data</span>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="guest_first_name">First Name</label>
+                        <input type="text" class="form-control" id="guest_first_name" name="guest_first_name" required [(ngModel)] = "guest.guest_first_name"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="guest_last_name">Last Name</label>
+                        <input type="text" class="form-control" id="guest_last_name" name="guest_last_name" required [(ngModel)] = "guest.guest_last_name"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="guest_phone_number">Phone Number</label>
+                        <input type="text" class="form-control" id="guest_phone_number" name="guest_phone_number" required [(ngModel)] = "guest.guest_phone_number"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required [(ngModel)] = "guest.email"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" required [(ngModel)] = "guest.address"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" name="country" id="country" [(ngModel)] = "guest.country"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="province">Province</label>
+                        <input type="text" class="form-control" name="province" id="province" [(ngModel)] = "guest.province"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city" required [(ngModel)] = "guest.city"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="postal_code">Postal Code</label>
+                        <input type="text" class="form-control" id="postal_code" name="postal_code" required [(ngModel)] = "guest.postal_code"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="credit_card_number">Credit Card</label>
+                        <input type="text" class="form-control" id="credit_card_number" name="credit_card_number" [(ngModel)] = "guest.credit_card_number"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="credit_card_expire_date">Expire Date</label>
+                        <input type="text" class="form-control" name="credit_card_expire_date" id="credit_card_expire_date" [(ngModel)] = "guest.credit_card_expire_date"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="credit_card_security_code">Code</label>
+                        <input type="text" class="form-control" name="credit_card_security_code" id="credit_card_security_code" [(ngModel)] = "guest.credit_card_security_code"/>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-create-new" [disabled]="!aa.valid"><i class="fa fa-save"></i> Save</button>
+                    <button (click)="backClicked()" type="button" class="btn btn-create-new"> <i class="fa fa-angle-left"></i> Go Back</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

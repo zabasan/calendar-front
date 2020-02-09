@@ -1,0 +1,43 @@
+<div class="card mb-3">
+    <div class="card-header">
+        <span class="title-card-header">Guests</span>
+        <a routerLink="/guest/create" type="button" class="btn btn-create-new"> <i class="fa fa-plus"></i> New Guest</a>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead>
+            <tr>
+                <th *ngFor="let column of columns">{{ column['title']}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let guest of guests">
+                <td>
+                    {{ guest['id'] }}
+                </td>
+                <td>
+                    {{ guest['guest_first_name'] }}
+                </td>
+                <td>
+                    {{ guest['guest_last_name'] }}
+                </td>
+                <td>
+                    {{ guest['guest_phone_number'] }}
+                </td>
+                <td>
+                    {{ guest['email'] }}
+                </td>
+                <td>
+                    <a type="button" class="btn btn-xs btn-warning" placement="top" ngbTooltip="Edit" [routerLink]="['/guest/', guest['id']]">
+                        <i class="fa fa-edit"></i>
+                    </a>&nbsp;
+                    <button type="button" class="btn btn-xs btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" (confirm)="delete(guest['id'])" (cancel)="cancelClicked = true" placement="top" ngbTooltip="Delete">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!--ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="5" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination-->
+    </div>
+</div>

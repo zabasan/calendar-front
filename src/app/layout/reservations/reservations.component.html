@@ -1,0 +1,48 @@
+<div class="card mb-3">
+    <div class="card-header">
+        <span class="title-card-header">Reservations</span>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead>
+            <tr>
+                <th *ngFor="let column of columns">{{ column['title']}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let book of rooms">
+                <td>
+                    {{ book['id'] }}
+                </td>
+                <td>
+                    {{ book.room_booking.room.name }}
+                </td>
+                <td>
+                    {{ book.start_date }}
+                </td>
+                <td>
+                    {{ book.end_date }}
+                </td>
+                <td>
+                    {{ book.room_booking.days }}
+                </td>
+                <td>
+                    {{ book.room_booking.guests }}
+                </td>
+                <td>
+                    {{ book.room_booking.reservation_code }}
+                </td>
+                <td>
+                    <a type="button" class="btn btn-xs btn-warning" placement="top" ngbTooltip="Edit" [routerLink]="['/reservation/', book['id']]">
+                        <i class="fa fa-edit"></i>
+                    </a>&nbsp;
+                    <button type="button" class="btn btn-xs btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" (confirm)="delete(book['id'])" (cancel)="cancelClicked = true" placement="top" ngbTooltip="Delete">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!--ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="5" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination-->
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="row" *ngIf="room">
+    <div class="col-md-12">
+        <form #aa="ngForm" role="form" (submit)="updateRoom()">
+            <div class="row">
+                <div class="card-header col-md-12">
+                    <span class="title-card-header">Rooms Edit</span>
+                    <button type="submit" class="btn btn-create-new" [disabled]="!aa.valid"><i class="fa fa-save"></i> Save</button>
+                    <a routerLink="" (click)="backClicked()" type="button" class="btn btn-create-new"> <i class="fa fa-angle-left"></i> Go Back</a>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required [(ngModel)] = "room.name"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="cost">Cost</label>
+                        <input type="text" class="form-control" name="cost" id="cost" [(ngModel)] = "room.cost"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="room_guests">Guests</label>
+                        <input type="text" class="form-control" id="room_guests" name="room_guests" required [(ngModel)] = "room.room_guests"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="allow_extra_bed">Allow Extra Beds</label>
+                        <select class="form-control" name="allow_extra_bed" id="allow_extra_bed" [(ngModel)] = "room.allow_extra_bed">
+                            <option value="0">NO</option>
+                            <option value="1">YES</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="max_extra_beds">Max Extra Beds</label>
+                        <input type="text" class="form-control" id="max_extra_beds" name="max_extra_beds" required [(ngModel)] = "room.max_extra_beds"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="calendar_id">Calendar ID</label>
+                        <input type="text" class="form-control" name="calendar_id" id="calendar_id" [(ngModel)] = "room.calendar_id" disabled/>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-create-new" [disabled]="!aa.valid"><i class="fa fa-save"></i> Save</button>
+                    <a routerLink="" (click)="backClicked()" type="button" class="btn btn-create-new"> <i class="fa fa-angle-left"></i> Go Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
