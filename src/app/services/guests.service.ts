@@ -11,7 +11,7 @@ export class GuestsService {
     public header: any;
     public token: any;
     public guests$: Observable<Guests[]>;
-    private guestsSubject = new Subject<Guests[]>();
+    public guestsSubject = new Subject<Guests[]>();
 
 
     guests: Guests[];

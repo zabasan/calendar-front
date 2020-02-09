@@ -11,11 +11,11 @@ export class RoomsService {
     public header: any;
     public token: any;
     public rooms$: Observable<Rooms[]>;
-    private roomsSubject = new Subject<Rooms[]>();
+    public roomsSubject = new Subject<Rooms[]>();
 
 
     rooms: Rooms[];
-    private params: { start_date: any; end_date: any };
+    public params: { start_date: any; end_date: any };
     constructor(private http: HttpClient) {
         this.token = localStorage.getItem('token');
         this.header = new HttpHeaders(

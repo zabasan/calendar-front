@@ -11,9 +11,9 @@ import {FiltersService} from '../../services/filters.service';
     styleUrls: ['./room-create.component.scss']
 })
 export class RoomCreateComponent implements OnInit {
-    private room: any;
+    public room: any;
     public keys: any;
-    private localUrl = '/room/create';
+    public localUrl = '/room/create';
     constructor(private http: HttpClient, private _location: Location, private filterService: FiltersService) {
         this.filterService.showFilter(false);
 

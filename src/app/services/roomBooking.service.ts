@@ -16,7 +16,7 @@ export class RoomBookingService {
     public skip = 0;
     public params = new HttpParams().set('limit', this.limit.toString()).set('skip', this.skip.toString());
     public reservations$: Observable<RoomBooking[]>;
-    private reservationsSubject = new Subject<RoomBooking[]>();
+    public reservationsSubject = new Subject<RoomBooking[]>();
 
 
     reservations: RoomBooking[];

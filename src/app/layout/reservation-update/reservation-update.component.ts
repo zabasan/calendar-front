@@ -15,15 +15,15 @@ import * as moment from 'moment-timezone';
     providers: [RoomsService, GuestsService]
 })
 export class ReservationUpdateComponent implements OnInit {
-    private rooms;
-    private reservation: any;
+    public rooms;
+    public reservation: any;
     public keys: any;
-    private localUrl = '/booking/';
-    private selected: { start: string | any; end: string | any };
-    private guests: any;
+    public localUrl = '/booking/';
+    public selected: { start: string | any; end: string | any };
+    public guests: any;
     public totalCost;
-    private invalidInput = false;
-    private originalRoom: any;
+    public invalidInput = false;
+    public originalRoom: any;
 
     constructor(private router: Router, private http: HttpClient,
                 private _location: Location, private filterService: FiltersService,

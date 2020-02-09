@@ -12,11 +12,11 @@ import {Router} from '@angular/router';
     styleUrls: ['./guest-update.component.scss']
 })
 export class GuestUpdateComponent implements OnInit {
-    private guest: any;
+    public guest: any;
     public keys: any;
-    private frontUrl = '/guest/';
-    private localUrl = '/guest_booking/';
-    private url;
+    public frontUrl = '/guest/';
+    public localUrl = '/guest_booking/';
+    public url;
     constructor(private router: Router, private http: HttpClient, private _location: Location, private filterService: FiltersService) {
         this.filterService.showFilter(false);
 

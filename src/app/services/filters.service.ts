@@ -7,9 +7,9 @@ export class FiltersService {
     public showFilter$: Observable<boolean>;
     public filtersToShow$: Observable<object>;
     public filters$: Observable<object>;
-    private isFilterShownSubject = new Subject<boolean>();
-    private filtersToShowSubject = new Subject<object>();
-    private filtersSubject = new Subject<object>();
+    public isFilterShownSubject = new Subject<boolean>();
+    public filtersToShowSubject = new Subject<object>();
+    public filtersSubject = new Subject<object>();
 
     constructor() {
         this.showFilter$ = this.isFilterShownSubject.asObservable();

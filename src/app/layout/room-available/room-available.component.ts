@@ -18,7 +18,7 @@ export class RoomAvailableComponent implements OnInit {
     public end: any = moment().add(1, 'day').tz('America/Buenos_Aires').format('YYYY-MM-DD');
     public value: Object;
     public date: Object = new Date();
-    private roomsAvailable: any = [];
+    public roomsAvailable: any = [];
     constructor(private http: HttpClient, private _service: CommunicationServiceService, private filterService: FiltersService) {
         this.filterService.showFilter(false);
     }
@@ -31,7 +31,7 @@ export class RoomAvailableComponent implements OnInit {
     public popoverMessage = 'Are you sure?';
     public confirmClicked;
     public cancelClicked = false;
-    private localUrl = '/rooms_available';
+    public localUrl = '/rooms_available';
 
     public columns: Array<any> = [{
         name: 'name',

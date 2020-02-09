@@ -15,16 +15,16 @@ import {FiltersService} from '../../services/filters.service';
   styleUrls: ['./reserve-room.component.scss']
 })
 export class ReserveRoomComponent implements OnInit {
-  guest: any;
+  public guest: any;
   public isNewGuest = false;
   public guest_phone_number: string;
   public localUrl = '/guests';
   public start;
   public end;
-  roomsToBook: any;
+  public roomsToBook: any;
   public reservationData: any;
   public discount_percentage: number;
-    private total_with_discount: number;
+  public total_with_discount: number;
   constructor(private _service: CommunicationServiceService,
               private http: HttpClient, private _router: Router, private filterService: FiltersService) {
       this.filterService.showFilter(false);

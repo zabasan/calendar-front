@@ -11,9 +11,9 @@ import {FiltersService} from '../../services/filters.service';
     styleUrls: ['./guest-create.component.scss']
 })
 export class GuestCreateComponent implements OnInit {
-    private guest: any;
+    public guest: any;
     public keys: any;
-    private localUrl = '/guest_booking/create';
+    public localUrl = '/guest_booking/create';
     constructor(private http: HttpClient, private _location: Location, private filterService: FiltersService) {
         this.filterService.showFilter(false);
 
