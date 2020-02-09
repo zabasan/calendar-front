@@ -2,6 +2,9 @@
   "name": "SB-Admin-BS4-Angular-7",
   "version": "7.0.0",
   "license": "Apache",
+  "engines": {
+    "node": "9.11.12"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
