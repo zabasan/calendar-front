@@ -41,7 +41,7 @@
     "ngx-select-ex": "latest",
     "rxjs": "6.3.3",
     "rxjs-compat": "^6.5.2",
-    "yarn": "1.12.1",
+    "yarn": "^1.22.0",
     "zone.js": "0.8.26"
   },
   "devDependencies": {
